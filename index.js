@@ -9,8 +9,16 @@ require('./models/User');
 require('./models/Blog');
 require('./services/passport');
 
-mongoose.Promise = global.Promise;
-mongoose.connect(keys.mongoURI, { useMongoClient: true });
+
+// mongoose.connect(keys.mongoURI);
+mongoose.connect(keys.mongoURI, {
+  useNewUrlParser: true,
+  useCreateIndex: true,
+  useFindAndModify: false,
+  useUnifiedTopology: true
+}).then(con => {
+  console.log('DB connection successful');
+})
 
 const app = express();
 
