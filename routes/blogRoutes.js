@@ -16,7 +16,9 @@ module.exports = app => {
   app.get('/api/blogs', requireLogin, async (req, res) => {
     const blogs = await Blog.find({ _user: req.user.id });
 
+    console.log('Serving from mongo');
     res.send(blogs);
+
   });
 
   app.post('/api/blogs', requireLogin, async (req, res) => {
